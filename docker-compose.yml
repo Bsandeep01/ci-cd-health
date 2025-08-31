@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: ci-cd-dashboard-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_OWNER=${GITHUB_OWNER}
+      - GITHUB_REPO=${GITHUB_REPO}
+      - DATABASE_URL=${DATABASE_URL:-sqlite://./data/pipeline_health.db}
+      - EMAIL_SERVICE=${EMAIL_SERVICE:-gmail}
+      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
+      - EMAIL_PORT=${EMAIL_PORT:-587}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      - SLACK_CHANNEL=${SLACK_CHANNEL}
+      - ALERT_FAILURE_THRESHOLD=${ALERT_FAILURE_THRESHOLD:-0.8}
+      - DATA_SYNC_INTERVAL=${DATA_SYNC_INTERVAL:-300000}
+      - DATA_RETENTION_DAYS=${DATA_RETENTION_DAYS:-30}
+    volumes:
+      - ./data:/app/data
+      - ./backend/logs:/app/logs
+    networks:
+      - ci-cd-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build: ./frontend
+    container_name: ci-cd-dashboard-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+      - REACT_APP_GITHUB_OWNER=${GITHUB_OWNER}
+      - REACT_APP_GITHUB_REPO=${GITHUB_REPO}
+    depends_on:
+      - backend
+    networks:
+      - ci-cd-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  ci-cd-network:
+    driver: bridge
+
+volumes:
+  data:
