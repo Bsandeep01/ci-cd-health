@@ -237,3 +237,4 @@ class GitHubService {
 }
 
 module.exports = new GitHubService();
+

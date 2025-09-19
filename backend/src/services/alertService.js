@@ -384,3 +384,4 @@ Repository: ${config.github.owner}/${config.github.repo}`;
 }
 
 module.exports = new AlertService();
+

@@ -68,3 +68,4 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
 };
 
 export default RecentActivity;
+

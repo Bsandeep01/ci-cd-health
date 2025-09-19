@@ -101,3 +101,4 @@ else
     echo "❌ Services failed to start. Check logs with: docker-compose logs"
     exit 1
 fi
+

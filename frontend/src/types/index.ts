@@ -158,3 +158,4 @@ export interface TrendsData {
     endDate: string;
   };
 }
+

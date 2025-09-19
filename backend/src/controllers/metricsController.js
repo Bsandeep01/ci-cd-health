@@ -399,3 +399,4 @@ class MetricsController {
 }
 
 module.exports = new MetricsController();
+

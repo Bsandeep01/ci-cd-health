@@ -20,3 +20,4 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, type }) => {
 };
 
 export default MetricCard;
+

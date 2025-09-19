@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getWorkflowRuns } from '../services/api';
+import { getWorkflowRuns } from '../services/api.ts';
 import { WorkflowRun, WorkflowRunsResponse } from '../types';
 
 const Workflows: React.FC = () => {
@@ -254,3 +254,4 @@ const Workflows: React.FC = () => {
 };
 
 export default Workflows;
+

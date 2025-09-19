@@ -194,3 +194,4 @@ const WorkflowRun = sequelize.define('WorkflowRun', {
 });
 
 module.exports = WorkflowRun;
+

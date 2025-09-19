@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getMetrics } from '../services/api';
+import { getMetrics } from '../services/api.ts';
 import { MetricsData } from '../types';
-import MetricCard from '../components/MetricCard';
-import RecentActivity from '../components/RecentActivity';
-import WorkflowBreakdown from '../components/WorkflowBreakdown';
+import MetricCard from '../components/MetricCard.tsx';
+import RecentActivity from '../components/RecentActivity.tsx';
+import WorkflowBreakdown from '../components/WorkflowBreakdown.tsx';
 
 const Dashboard: React.FC = () => {
   const [metrics, setMetrics] = useState<MetricsData | null>(null);
@@ -151,3 +151,4 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAlerts, sendTestAlert, retryAlert } from '../services/api';
+import { getAlerts, sendTestAlert, retryAlert } from '../services/api.ts';
 import { Alert, AlertsResponse } from '../types';
 
 const Alerts: React.FC = () => {
@@ -271,8 +271,10 @@ const Alerts: React.FC = () => {
                       {alert.status}
                     </span>
                     {alert.retry_count > 0 && (
-                      <br />
-                      <small>Retries: {alert.retry_count}</small>
+                      <>
+                        <br />
+                        <small>Retries: {alert.retry_count}</small>
+                      </>
                     )}
                   </td>
                   <td>{alert.recipient || '-'}</td>
@@ -281,8 +283,10 @@ const Alerts: React.FC = () => {
                       <>
                         <strong>{alert.workflow_name}</strong>
                         {alert.workflow_run_id && (
-                          <br />
-                          <small>Run #{alert.workflow_run_id}</small>
+                          <>
+                            <br />
+                            <small>Run #{alert.workflow_run_id}</small>
+                          </>
                         )}
                       </>
                     ) : (
@@ -342,3 +346,4 @@ const Alerts: React.FC = () => {
 };
 
 export default Alerts;
+

@@ -97,3 +97,4 @@ const Alert = sequelize.define('Alert', {
 });
 
 module.exports = Alert;
+

@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Dashboard from './pages/Dashboard';
-import Workflows from './pages/Workflows';
-import Alerts from './pages/Alerts';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
+import Dashboard from './pages/Dashboard.tsx';
+import Workflows from './pages/Workflows.tsx';
+import Alerts from './pages/Alerts.tsx';
+import Header from './components/Header.tsx';
+import Sidebar from './components/Sidebar.tsx';
 
 function App() {
   return (
@@ -28,3 +28,4 @@ function App() {
 }
 
 export default App;
+

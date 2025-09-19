@@ -10,8 +10,8 @@ RUN apk add --no-cache python3 make g++
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (no lockfile required)
+RUN npm install --omit=dev
 
 # Copy source code
 COPY . .
@@ -35,3 +35,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Start the application
 CMD ["node", "src/server.js"]
+
