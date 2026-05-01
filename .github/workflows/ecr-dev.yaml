@@ -1,0 +1,10 @@
+name: Build and Push to Main-ECR
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Build Docker image
+        run: echo "hello"
